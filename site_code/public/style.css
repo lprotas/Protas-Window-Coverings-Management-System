@@ -1,0 +1,46 @@
+/* Citations: /*
+/* https://canvas.oregonstate.edu/courses/1999601/pages/exploration-web-application-technology-2?module_item_id=25352948 */
+/* for general CSS structure */
+
+/* General styles */
+h1, h2 { margin-left: 16px;}
+table {border-collapse: collapse;margin-left: 32px;}
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+th {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #f9f9f9;}
+.cuForm { margin-left: 32px;}
+input, select { margin-bottom: 4px;margin-right: 12px;}
+nav {background-color: #cecece;padding: 16px;}
+a {margin-left: 16px;}
+.homepageDescription {margin-left: 32px;}
+
+
+/* Style for the table cells */
+td {
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Style for the buttons */
+button {
+    margin-left: 1em;
+    padding: 6px 12px; /* Adjust padding as needed */
+    font-size: 14px; /* Adjust font size as needed */
+}
+
+/* Style for the quantity input */
+input[type="number"] {
+    width: 60px; /* Adjust width as needed */
+    padding: 4px;
+    margin: 0; /* Remove any default margins */
+    vertical-align: middle; /* Align with the button */
+}
+
+.indented {
+    text-indent: 2em; /* Adjust the value as needed */
+}

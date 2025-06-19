@@ -1,0 +1,59 @@
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Customers Page                                                              -->
+<!-- // Displays a table of customers and a form to add new customers.              -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<h1>Customers</h1>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // READ Table                                                                 -->
+<!-- // Displays a table of existing customers with their details.                  -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<table>
+  <thead>
+    <tr>
+      <th>Customer ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each customers}}
+    <tr>
+      <td>{{this.customerID}}</td>
+      <td>{{this.firstName}}</td>
+      <td>{{this.lastName}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.phone}}</td>
+      <td>{{this.address}}</td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // CREATE Form                                                                -->
+<!-- // Displays a form to add a new customer to the database.                     -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<h2>Create a Customer</h2>
+<form action="/customers/add" method="POST">
+  <label for="create_customer_firstName">First Name:</label>
+  <input type="text" name="create_customer_firstName" id="create_customer_firstName" required />
+
+  <label for="create_customer_lastName">Last Name:</label>
+  <input type="text" name="create_customer_lastName" id="create_customer_lastName" required />
+
+  <label for="create_customer_email">Email:</label>
+  <input type="email" name="create_customer_email" id="create_customer_email" />
+
+  <label for="create_customer_phone">Phone:</label>
+  <input type="text" name="create_customer_phone" id="create_customer_phone" required />
+
+  <label for="create_customer_address">Address:</label>
+  <input type="text" name="create_customer_address" id="create_customer_address" required />
+
+  <input type="submit" value="Add Customer" />
+</form>

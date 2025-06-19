@@ -1,0 +1,86 @@
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Invoice Details Page                                                          -->
+<!-- // Displays details for a specific invoice, including order details and forms to add, update, and delete order details. -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<h1>Order Details</h1>
+
+<link rel="stylesheet" href="/style.css">
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Customer and Invoice Information                                            -->
+<!-- // Displays the customer's name and invoice ID.                                -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<p><strong>Customer:</strong> 
+    {{#each customers}}
+        {{#if this.isSelected}}
+            {{this.firstName}} {{this.lastName}}
+        {{/if}}
+    {{/each}}
+</p>
+<p><strong>Invoice ID:</strong> {{invoice.invoiceID}}</p>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Order Details Table                                                           -->
+<!-- // Displays a table of order details for the invoice, including product name, unit price, quantity, and actions to update or delete the order detail. -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Unit Price</th>
+      <th>Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if details.length}}
+        {{#each details}}
+        <tr>
+            <td>{{this.productName}}</td>
+            <td>${{this.unitPrice}}</td>
+            <td>
+                {{!-- Update Form --}}
+                <form action="/invoices/{{../invoice.invoiceID}}/update-order" method="POST" style="display:inline;">
+                    <input type="hidden" name="orderDetailID" value="{{this.orderDetailID}}" />
+                    <input type="hidden" name="productID" value="{{this.productID}}" />
+                    <input type="number" name="quantity" value="{{this.quantity}}" min="1" required />
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+            <td>
+                {{!-- Delete Form --}}
+                <form action="/invoices/{{../invoice.invoiceID}}/delete-order" method="POST" style="display:inline;">
+                    <input type="hidden" name="orderDetailID" value="{{this.orderDetailID}}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {{/each}}
+    {{else}}
+        <tr>
+            <td colspan="4">No order details available.</td>
+        </tr>
+    {{/if}}
+  </tbody>
+</table>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Add Order Detail Form                                                         -->
+<!-- // Displays a form to add a new order detail to the invoice, including a product selection dropdown and a quantity input. -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<h2>Add Order Detail</h2>
+<form action="/invoices/{{invoice.invoiceID}}/add-order" method="POST">
+    <label for="productID">Product:</label>
+    <select name="productID" id="productID" required>
+        <option value="" disabled selected>Select a Product</option>
+        {{#each products}}
+        <option value="{{this.productID}}">{{this.productName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" name="quantity" id="quantity" min="1" required />
+
+    <button type="submit">Add</button>
+</form>

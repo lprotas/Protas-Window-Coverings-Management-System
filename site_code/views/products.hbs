@@ -1,0 +1,48 @@
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Products Page                                                               -->
+<!-- // Displays a table of products and a form to add new products.                -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<h1>Products</h1>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // READ Table                                                                 -->
+<!-- // Displays a table of products with their ID, name, and unit price.          -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<table>
+    <thead>
+        {{! For the table header row, we print the DB attribute names }}
+        <tr>
+            <th>Product ID</th>
+            <th>Product Name</th>
+            <th>Unit Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{! For each row, print the productID, productName, unitPrice }}
+        {{#each prods}}
+        <tr>
+            <td>{{this.productID}}</td>
+            <td>{{this.productName}}</td>
+            <td>{{this.unitPrice}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // CREATE Form                                                                -->
+<!-- // Displays a form to add a new product to the database.                     -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<h2>Add a Product</h2>
+<form action="/products/add" method="POST">
+    <label for='create_product_name'>Product Name: </label>
+    <input type='text' name='create_product_name' id='create_product_name' required />
+
+    <label for='create_product_price'>Price per Unit: </label>
+    <input type='text' name='create_product_price' id='create_product_price' step='.01' min='0'/>
+
+    <input type='submit' />
+</form>
+

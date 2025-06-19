@@ -1,0 +1,82 @@
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Invoices Page                                                               -->
+<!-- // Displays a table of invoices and a form to add new invoices.                -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+
+<h1>Invoices</h1>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Invoice Table                                                               -->
+<!-- // Displays a table of existing invoices with their details and actions.        -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<table>
+  <thead>
+    <tr>
+      <th>Invoice ID</th>
+      <th>Customer</th>
+      <th>Invoice Date</th>
+      <th>Payment Received</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if orders.length}}
+        {{#each orders}}
+        <tr>
+            <td>{{this.invoiceID}}</td>
+            <td>{{this.firstName}} {{this.lastName}}</td>
+            <td>{{this.invoiceDate}}</td>
+            <td>
+                {{#if this.paymentReceived}}
+                    Yes
+                {{else}}
+                    No
+                {{/if}}
+                <form action="/invoices/update" method="POST" style="display: inline;">
+                    <input type="hidden" name="invoiceID" value="{{this.invoiceID}}" />
+                    <input type="hidden" name="customerID" value="{{this.customerID}}" />
+                    <input type="hidden" name="invoiceDate" value="{{this.invoiceDate}}" />
+                    <input type="hidden" name="paymentReceived" value="{{#if this.paymentReceived}}0{{else}}1{{/if}}" />
+                    <button type="submit" onclick="return confirm('Are you sure you want to update the Payment Received?');">Update</button>
+                </form>
+            </td>
+            <td>
+                <a href="/invoices/{{this.invoiceID}}">View Details</a>
+            </td>
+        </tr>
+        {{/each}}
+    {{else}}
+        <tr>
+            <td colspan="5">No invoices available.</td>
+        </tr>
+    {{/if}}
+  </tbody>
+</table>
+
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- // Add Invoice Form                                                            -->
+<!-- // Displays a form to add a new invoice to the database.                        -->
+<!-- //////////////////////////////////////////////////////////////////////////////// -->
+<h2>Add a New Invoice</h2>
+<form id="create_invoice_form" action="/invoices/add" method="POST">
+    <label for="create_invoice_customer">Customer:</label>
+    <select name="create_invoice_customer" id="create_invoice_customer" required>
+        <option value="" disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value="{{this.customerID}}">
+            {{this.firstName}} {{this.lastName}}
+        </option>
+        {{/each}}
+    </select>
+    <br />
+    
+    <label for="create_invoice_date">Invoice Date:</label>
+    <input type="date" name="create_invoice_date" id="create_invoice_date" required />
+    <br />
+    
+    <label for="create_invoice_payment">Payment Received:</label>
+    <input type="checkbox" name="create_invoice_payment" id="create_invoice_payment" value="1" />
+    <br />
+    
+    <button type="submit">Add Invoice</button>
+</form>
