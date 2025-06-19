@@ -1,8 +1,3 @@
-----------------------------------------------------------------
--- Lev Protas and Ah Young Lee
--- Group 10
--- CS340 WI25
--- Step 6 (Portfolio Assignment)
 -- Citations:
     -- https://canvas.oregonstate.edu/courses/1999601/pages/exploration-implementing-cud-operations-in-your-app?module_item_id=25352968
         -- May 20, 2025
