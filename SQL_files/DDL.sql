@@ -1,9 +1,3 @@
-----------------------------------------------------------------
--- Lev Protas and Ah Young Lee
--- Group 10
--- CS340 WI25
--- Step 6 (Portfolio Assignment)
-
 -- Citations:
     -- Names for data examples taken from The Office TV show
     -- https://canvas.oregonstate.edu/courses/1999601/pages/exploration-mysql-cascade
