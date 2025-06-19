@@ -1,9 +1,3 @@
-----------------------------------------------------------------
--- Lev Protas and Ah Young Lee
--- Group 10
--- CS340 WI25
--- Step 6 (Portfolio Assignment)
-
 -- Citations:
 -- https://www.w3schools.com/sql/sql_update.asp
 --     May 7, 2025 — Referenced for UPDATE, DELETE, and INSERT
